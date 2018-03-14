@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+		
+		<record model="ir.ui.view" id="attendee_form_view">
+			<field name="name">attendee.form</field>
+			<field name="model">openacademy.attendee</field>			
+			<field name="arch" type="xml">
+				<form string="Attendees Form">
+					<sheet>
+						<group>
+							<field name="name"/>
+						</group>													
+					</sheet>
+					
+				</form>
+				
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="attendee_action">
+			<field name="name">Participants</field>
+			<field name="res_model">openacademy.attendee</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Creer le premier participant</p>
+			</field>
+		</record>
+
+	</data>
+</openerp>

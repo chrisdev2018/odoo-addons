@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+		
+		<record model="ir.ui.view" id="session_form_view">
+			<field name="name">session.form</field>
+			<field name="model">openacademy.session</field>			
+			<field name="arch" type="xml">
+				<form string="Session Form">
+					<header>
+						<button name="action_draft" type="object" string="Reset to draft" states="confirmed,done" />
+						<button name="action_confirm" type="object" states="draft" string="Confirm" class="oe_highlight" />	
+						<button name="action_done" type="object" string="Mark as done" states="confirmed" class="oe_highlight"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<group string="General">
+							<field name="course_id"/>
+							<field name="name"/>
+							<field name="instructor_id"/>
+						</group>
+						<group string="Schedule">
+							<field name="start_date"/>
+							<field name="duration"/>
+							<field name="seats"/>
+							<field name="attendee_ids"/>
+							<field name="taken_seats" widget="progressbar"/>
+						</group>
+						
+					</sheet>
+					
+				</form>
+				
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="session_tree_view" >
+			<field name="name">session.tree</field>
+			<field name="model">openacademy.session</field>
+			<field name="arch" type="xml">
+				<tree string="Session Tree">
+					<field name="name"/>
+					<field name="course_id"/>
+					<field name="instructor_id"/>
+					<field name="duration" />
+					<field name="taken_seats" widget="progressbar"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="session_action">
+			<field name="name">Sessions</field>
+			<field name="res_model">openacademy.session</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Creer la premiere session</p>
+			</field>
+		</record>
+
+	</data>
+</openerp>

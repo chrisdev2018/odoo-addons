@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<menuitem id="main_openacademy_menu"  sequence="10" name="Open Classes"/> 
+
+
+
+		<menuitem id="openacademy_submenu1" sequence="10" name="General" parent="main_openacademy_menu"/>
+
+		<menuitem id="openacademy_submenumenu2" sequence="20" name="Administration" parent="main_openacademy_menu"/> <!--Ce qui apparait 
+		dans le menu de gauche -->
+
+
+<!--Tous les sous-menus -->
+		<menuitem id="course_menu" name="Cours" sequence="10" parent="openacademy_submenu1" action="course_list_action"/>
+
+		<menuitem id="session_menu" name="Sessions" sequence="20" parent="openacademy_submenu1" action="session_action"/>
+
+		<menuitem id="responsible_menu" name="Responsables" sequence="10"  parent="openacademy_submenumenu2" action="responsible_action"/>
+
+		<menuitem id="attendee_menu" name="Participants" sequence="20" parent="openacademy_submenumenu2" action="attendee_action"/>
+
+	</data>
+</openerp>

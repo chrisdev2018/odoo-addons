@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="course_form_view">
+			<field name="name">course.form</field>
+			<field name="model">openacademy.course</field>			
+			<field name="arch" type="xml">
+				<form string="Course Form">
+					<sheet>
+						<group>
+							<field name="name"/>
+							<field name="responsible_id"/>
+						</group>
+						<group>
+							<notebook>
+							<page string="Description">							
+								<field name="description"/>
+							</page>
+							<page string="About">							
+								Ceci est un exemple
+							</page>
+						</notebook>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="course_tree_view" >
+			<field name="name">course.tree</field>
+			<field name="model">openacademy.course</field>
+			<field name="arch" type="xml">
+				<tree string="Course Tree">
+					<field name="name"/>
+					<field name="responsible_id"/>
+				</tree>
+			</field>
+			<but
+		</record>
+
+		<record model="ir.actions.act_window" id="course_list_action">
+			<field name="name">Cours</field>
+			<field name="res_model">openacademy.course</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Creer le premier cours</p>
+			</field>
+		</record>		
+	</data>
+
+
+</openerp>

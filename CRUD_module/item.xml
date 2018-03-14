@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+    	
+    	
+
+
+
+    	<record model="ir.actions.act_window" id="action_personne">
+    		<field name="name">Personnes</field>
+    		<field name="res_model">personne</field>
+    		<field name="view_type">form</field>
+    		<field name="view_mode">tree,form</field>
+    		<field name="help" type="html">
+    			<p class="oe_view_nocontent_create"> Creer la premiere personne</p>
+    		</field> 
+    	</record>
+
+    	<menuitem name="CRUD" id="menu_root_navbar" action="action_personne" sequence="10" />
+        
+       
+    	
+		
+    </data>
+</openerp>	

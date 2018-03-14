@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+          <record id="objects" model="ir.ui.menu"> 
+             <field name="name">My menu of objects</field>
+             <field name="sequence" eval="10" />
+             <field name="action" ref="" />
+             <field name="parent_id" ref="base.menu_custom"/> 
+           </record>       
+         
+          
+           <record id="object1" model="ir.ui.menu"> 
+             <field name="name">Object 1</field>
+             <field name="sequence" eval="10" />
+             <field name="action" ref="" />
+             <field name="parent_id" ref="objects"/>
+           </record> 
+          
+           <record id="object2" model="ir.ui.menu"> 
+             <field name="name">Object 2</field>
+             <field name="sequence" eval="20" />
+             <field name="action" ref="" />
+             <field name="parent_id" ref="objects"/>
+           </record> 
+          
+           <record id="object3" model="ir.ui.menu"> 
+             <field name="name">Object 3</field>
+             <field name="sequence" eval="30" />
+             <field name="action" ref="" />
+             <field name="parent_id" ref="objects"/>
+           </record> 
+            
+           <record id="object4" model="ir.ui.menu"> 
+             <field name="name">Object 4</field>
+             <field name="sequence" eval="40" />
+             <field name="action" ref="" />
+             <field name="parent_id" ref="objects"/>
+           </record> 
+        
+    </data>
+</openerp>
