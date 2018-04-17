@@ -36,7 +36,7 @@
 					<field name="responsible_id"/>
 				</tree>
 			</field>
-			<but
+
 		</record>
 
 		<record model="ir.actions.act_window" id="course_list_action">

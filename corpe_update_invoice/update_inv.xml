@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="imp_inv_view">
+            <field name="name">Update in customer's invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/h1/label[@string='Draft Invoice']" position="attributes">
+                    <attribute name="string">Facture en traitement</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="imp_inv_view_supplier">
+            <field name="name">Update in supplier's invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div/h1/label[@string='Draft Invoice']" position="attributes">
+                    <attribute name="string">Facture en traitement</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
