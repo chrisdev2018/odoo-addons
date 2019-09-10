@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_activite_form" model="ir.ui.view">
+            <field name="name">corpe_maintenance.activite.form</field>
+            <field name="model">corpe_maintenance.activite</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Form_Activite" >
+                    <header>
+                        <button name="action_act_confirm" string="Valider" type="object" states="opened"
+                                confirm="La fiche d'activité est-elle correctement renseignée?" class="oe_highlight" />
+                        <button name="action_act_reopen" string="Réouvrir" type="object" states="closed" class="oe_highlight" />
+                        <button name="action_act_open" string="Ouvrir" type="object" states="new" class="oe_highlight" />
+
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="new,open,closed"/>
+                    </header>
+                    <sheet>
+                        <group col="6">
+                            <group>
+                                <h1>
+                                    <field name="name"/>
+                                </h1>
+                            </group>
+                            <group></group>
+                            <group>
+                                <field name="bt"/>
+                                <field name="equipment"/>
+                            </group>
+                        </group>
+                            <br/>
+                        <group col="4">
+                            <group>
+                                <field name="date"/>
+                                <field name="diagnostic"/>
+                                <field name="correction"/>
+                                <field name="observation"/>
+                            </group>
+                            <group>
+                                <field name="debut"/>
+                                <field name="fin"/>
+                                <field name="duree"/>
+                                <field name="indisponibilite"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Intervenants">
+                                <field name="intervenant_lines">
+                                    <tree editable="bottom">
+                                        <field name="employee_id"/>
+                                        <field name="poste_intervenant"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Pièces de rechange utilisées">
+                                <field name="piece_lines">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="quantite"/>
+                                        <field name="unite" readonly="1"/>
+                                        <field name="prix_unitaire"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_activite_tree" model="ir.ui.view">
+            <field name="name">corpe_maintenance.activite.tree</field>
+            <field name="model">corpe_maintenance.activite</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Tree_Activite">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="equipment" />
+                    <field name="bt" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="activity_search" model="ir.ui.view">
+            <field name="name">Recherche des fiches d'activite</field>
+            <field name="model">corpe_maintenance.activite</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Reférence"/>
+                    <field name="equipment"/>
+                    <group string="Regrouper par">
+                        <filter name="group_by_equipment" string="Equipement" context="{'group_by': 'equipment'}"/>
+                        <filter name="group_by_intervenant" string="Intervenant" context="{'group_by': 'intervenant'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="corpe_maintenance.activite_action_view" model="ir.actions.act_window">
+            <field name="name">Fiche d'activite</field>
+            <field name="res_model">corpe_maintenance.activite</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

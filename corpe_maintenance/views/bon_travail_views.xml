@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_bon_travail_form" model="ir.ui.view">
+            <field name="name">corpe_maintenance.bon_travail.form</field>
+            <field name="model">corpe_maintenance.bon_travail</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="bon_travail" >
+                    <header>
+                            <button name="action_open_bt" string="Démarrer" groups="corpe_maintenance.maintenance_chief" type="object" states="new"
+                                    class="oe_highlight" />
+                            <button name="action_close_bt"
+                                    confirm="Les informations du BT sont-elles correctes?"
+                                    string="Clôturer" groups="corpe_maintenance.maintenance_chief" type="object" states="open" class="oe_highlight" />
+
+                            <field name="state" widget="statusbar" nolabel="1" statusbar_visible="new,open"/>
+                    </header>
+                    <sheet>
+                        <group col="6">
+                            <group>
+                                <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name" class="oe_inline"/>
+                                </h1>
+                            </group>
+                            <group></group>
+                            <group>
+                                <field name="d_i"/>
+                            </group>
+                        </group>
+                        <br/>
+                        <group col="4">
+                            <group>
+                                <field name="equipment"/>
+                                <field name="etat"/>
+                                <field name="symptomes"/>
+                            </group>
+                            <group>
+                                <field name="emetteur"/>
+                                <field name="destinataire"/>
+                            </group>
+                        </group>
+                        <br/>
+                        <group col="4">
+                            <group>
+                                <field name="intervenant" required="1"/>
+                                <field name="priorite" required="1"/>
+                                <field name="projet"/>
+                            </group>
+                            <group>
+                                <field name="taf"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_bon_travail_tree" model="ir.ui.view">
+            <field name="name">corpe_maintenance.bon_travail.tree</field>
+            <field name="model">corpe_maintenance.bon_travail</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="bon_travail">
+                    <field name="name" select="1" />
+                    <field name="d_i" string="Demande d'intervention" select="1" />
+                    <field name="intervenant" string="Intervenant" select="1" />
+                    <field name="state"  />
+                </tree>
+            </field>
+        </record>
+
+         <record id="bt_search" model="ir.ui.view">
+            <field name="name">Recherche de BT</field>
+            <field name="model">corpe_maintenance.bon_travail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Reférence"/>
+                    <field name="equipment"/>
+                    <group string="Regrouper par">
+                        <filter name="group_by_equipment" string="Equipement" context="{'group_by': 'equipment'}"/>
+                        <filter name="group_by_intervenant" string="Intervenant" context="{'group_by': 'intervenant'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="corpe_maintenance.bon_travail_action_view" model="ir.actions.act_window">
+            <field name="name">Bon de travail</field>
+            <field name="res_model">corpe_maintenance.bon_travail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

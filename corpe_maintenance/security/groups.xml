@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+  		<!-- CATEGORIE DES GROUPES-->
+		<record model="ir.module.category" id="maintenance_profiles">
+		   <field name="name">Maintenance</field>
+		   <field name="description">Categories des groupes du module Maintenance</field>
+		   <field name="sequence">260</field>
+		   <field name="visible" eval="1" />
+		</record>
+
+	    <record id="maintenance_chief" model="res.groups">
+	       <field name="name">Chef  Maintenance</field>
+	       <field name="category_id" ref="maintenance_profiles"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+	  	<record id="maintenance_technical_admin" model="res.groups">
+	       <field name="name">Administration Technique Maintenance</field>
+	       <field name="category_id" ref="maintenance_profiles"/>
+	       <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+
+
+    </data>
+</openerp>

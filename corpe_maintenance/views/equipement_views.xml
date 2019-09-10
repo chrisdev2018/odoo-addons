@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_equipement_form" model="ir.ui.view">
+            <field name="name">corpe_maintenance.equipement.form</field>
+            <field name="model">corpe_maintenance.equipement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Equipment" version="7.0">
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" class="oe_inline"/>
+                            </h1>
+                        <div class="oe_right oe_button_box">
+                            <button class="oe_inline oe_stat_button" type="object" name="open_di_tree"
+                                    icon="fa-file-text-o">
+                                <field name="di_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_inline oe_stat_button" name="open_bt_tree" type="object"
+                                    icon="fa-wrench">
+                                <field name="bt_count" widget="statinfo"/>
+                            </button>
+                            <button class="oe_inline oe_stat_button" type="object" name="open_activite_tree"
+                                    icon="fa-clipboard">
+                                <field name="activite_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <br/><br/><br/><br/>
+                        <group string="Propriétés">
+                            <group>
+                                <field name="reference"/>
+                                <field name="ligne_id"/>
+                                <field name="marque"/>
+                                <field name="fabricant"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                                <field name="mise_en_service"/>
+                                <field name="garantie"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_equipement_tree" model="ir.ui.view">
+            <field name="name">corpe_maintenance.equipement.tree</field>
+            <field name="model">corpe_maintenance.equipement</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Equipement">
+                    <field name="reference"/>
+                    <field name="name"/>
+                    <field name="marque"/>
+                    <field name="centre"/>
+                    <field name="ligne_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="equipment_search" model="ir.ui.view">
+            <field name="name">Recherche des equipements</field>
+            <field name="model">corpe_maintenance.equipement</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group string="Regrouper par">
+                        <filter name="group_by_centre" string="Centre de maintenance"
+                                context="{'group_by': 'centre'}"/>
+                        <filter name="group_by_ligne_production" string="Ligne de production"
+                                context="{'group_by': 'ligne_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="corpe_maintenance.equipement_action_view" model="ir.actions.act_window">
+            <field name="name">Equipement</field>
+            <field name="res_model">corpe_maintenance.equipement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

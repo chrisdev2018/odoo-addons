@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data noupdate="1">
+
+        <!--sequence pour les demande de travail-->
+        <record model="ir.sequence.type" id="di_seq_code">
+            <field name="name">Sequence pour les demandes d'intervention</field>
+            <field name="code">di.sequence</field>
+        </record>
+
+        <record id="di_seq" model="ir.sequence">
+            <field name="name">Sequence pour les demandes d'intervention</field>
+            <field name="code">di.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">DI/</field>
+            <field name="number_incremenent">1</field>
+            <field name="number_next">1</field>
+            <field name="padding">5</field>
+            <field name="implemetation">standard</field>
+        </record>
+
+        <!--sequence pour les bon de travail-->
+        <record model="ir.sequence.type" id="bt_seq_code">
+            <field name="name">Sequence pour les Bons de travail</field>
+            <field name="code">bt.sequence</field>
+        </record>
+
+        <record id="bt_seq" model="ir.sequence">
+            <field name="name">Sequence pour les bons de travail</field>
+            <field name="code">bt.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">BT/</field>
+            <field name="number_incremenent">1</field>
+            <field name="number_next">1</field>
+            <field name="padding">5</field>
+            <field name="implemetation">standard</field>
+        </record>
+
+        <!--sequence pour les fiches d'activite-->
+        <record model="ir.sequence.type" id="activite_seq_code">
+            <field name="name">Sequence pour les fiches d'activité</field>
+            <field name="code">activite.sequence</field>
+        </record>
+
+        <record id="activite_seq" model="ir.sequence">
+            <field name="name">Sequence pour les fiches d'activité</field>
+            <field name="code">activite.sequence</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">Activité/</field>
+            <field name="number_incremenent">1</field>
+            <field name="number_next">1</field>
+            <field name="padding">5</field>
+            <field name="implemetation">standard</field>
+        </record>
+    </data>
+</openerp>
+

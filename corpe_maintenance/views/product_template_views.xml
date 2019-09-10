@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+   <data>
+	<record id="view_product_product_form_inherit" model="ir.ui.view" >
+		<field name="name">product.product.form.inherit</field>
+		<field name="model">product.template</field>
+		<field eval="1" name="priority"/>
+		<field name="inherit_id" ref="product.product_template_only_form_view"/>
+		<field name="arch" type="xml">
+			   <xpath expr="//page[6]" position="after">
+				<page string="Extras">
+					<group>
+						<field name="est_piece_rechange"/>
+					</group>
+				</page>
+			   </xpath>
+		</field>
+  	</record>
+    </data>
+</openerp>

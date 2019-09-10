@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <menuitem id="corpe_maintenance.menu" name="Maintenance" sequence="91"/>
+
+        <!--<menuitem id="corpe_maintenance.dashbord_action"
+                  parent="corpe_maintenance.menu"
+                  action="corpe_maintenance.dashbord_action_view"
+                  name="Tableau de bord"
+                  sequence="1"/>-->
+
+        <menuitem id="corpe_maintenance.general" parent="corpe_maintenance.menu" name="General" sequence="2"/>
+
+        <menuitem id="corpe_maintenance.demande_intervention_action"
+                  parent="corpe_maintenance.general"
+                  action="corpe_maintenance.demande_intervention_action_view"
+                  name="Demande d'intervention"
+                  sequence="1"/>
+
+        <menuitem id="corpe_maintenance.bon_travail_action"
+                  parent="corpe_maintenance.general"
+                  action="corpe_maintenance.bon_travail_action_view"
+                  name="Bon de travail"
+                  sequence="2"/>
+
+        <menuitem id="corpe_maintenance.activite_action"
+                  parent="corpe_maintenance.general"
+                  action="corpe_maintenance.activite_action_view"
+                  name="Fiche d'activite"
+                  sequence="3"/>
+
+
+
+        <menuitem id="corpe_maintenance.configuration" parent="corpe_maintenance.menu"
+                  name="Configuration" sequence="3"/>
+
+        <menuitem id="corpe_maintenance.centre_maintenance_action"
+                  parent="corpe_maintenance.configuration"
+                  action="corpe_maintenance.centre_maintenance_action_view"
+                  name="Centre de maintenance"
+                  sequence="1"/>
+
+
+        <menuitem id="corpe_maintenance.ligne_production_action"
+                  parent="corpe_maintenance.configuration"
+                  action="corpe_maintenance.ligne_production_action_view"
+                  name="Ligne de production"
+                  sequence="2"/>
+
+
+        <menuitem id="corpe_maintenance.equipement_action"
+                  parent="corpe_maintenance.configuration"
+                  action="corpe_maintenance.equipement_action_view"
+                  name="Equipement"
+                  sequence="3"/>
+
+
+        <menuitem id="corpe_maintenance.type_panne_action"
+                  parent="corpe_maintenance.configuration"
+                  action="corpe_maintenance.type_panne_action_view"
+                  name="Type de panne"
+                  sequence="4"/>
+
+
+
+        <menuitem id="corpe_maintenance.rapports" parent="corpe_maintenance.menu" name="Les Rapports" sequence="3"/>
+
+
+
+
+
+
+    </data>
+</openerp>
