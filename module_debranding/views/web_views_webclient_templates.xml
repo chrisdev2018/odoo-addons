@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+
+	<!-- Setting theme favicon -->
+	<template id="layout" inherit_id="web.layout" name="Setting favicon" priority="30">
+         <xpath expr="//link[@rel='shortcut icon']/.." position="replace">
+            <link rel="shortcut icon" href="/module_debranding/static/src/img/favicon.ico" type="image/x-icon"/>
+        </xpath>
+    </template>
+
+    <template id="menu_secondary" inherit_id="web.menu_secondary" priority="34">
+        <xpath expr="//div[@class='oe_footer']" position="replace">
+            <div class="oe_footer">
+                <span>Propulsé par <a href="https://github.com/chrisdev2018">Christian FOMEKONG</a></span>
+            </div>
+        </xpath>
+    </template>
+
+</data>
+</openerp>
