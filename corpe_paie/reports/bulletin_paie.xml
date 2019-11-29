@@ -1,0 +1,322 @@
+<openerp>
+	<data>
+
+		<report
+		    id="bulletin_paie_report"
+		    model="hr.payslip"
+		    string="Bulletin de paie"
+		    report_type="qweb-pdf"
+		    name="corpe_paie.bulletin_paie_template"
+		    file="Bulletin paie"
+		/>
+
+		<record id="corpe_paie.bulletin_paie_report" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="corpe_paie.paperformat_a4_port_no_header" />
+		</record>
+
+		<template id="bulletin_paie_template">
+		    <t t-call="report.html_container">
+		    	<t t-foreach="data" t-as="o">
+	            	<div class="header"><br/></div>
+	                <div class="page">
+
+	                	<style type="text/css">
+
+		            		table.gridtable {
+								font-family: verdana,arial,sans-serif;
+								font-size:11px;
+								color:#333333;
+								border-width: 1px;
+								border-color: #666666;
+								border-collapse: collapse;
+								width: 100%;
+								height: 100%;
+							}
+							table.gridtable th {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+							}
+							table.gridtable td {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+								background-color: #ffffff;
+								vertical-align: top;
+							}
+
+							table.gridtable2 {
+								font-family: verdana,arial,sans-serif;
+								font-size:11px;
+								color:#333333;
+								border-width: 1px;
+								border-color: #666666;
+								border-collapse: collapse;
+								width: 100%;
+								height: 35%;
+							}
+							table.gridtable2 td {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+								background-color: #ffffff;
+								vertical-align: top;
+							}
+
+							table.gridtable2 th {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+							}
+
+							table.gridtable3 {
+								font-family: verdana,arial,sans-serif;
+								font-size:11px;
+								color:#333333;
+								border-width: 1px;
+								width: 100%;
+								height: 62%;
+								border-collapse: collapse;
+							}
+							table.gridtable3 td {
+								padding-left: 8px;
+								padding-right: 8px;
+								padding-top: 1px;
+								padding-bottom: 1px;
+								vertical-align: top;
+							}
+
+							.text_number {text-align: right;}
+
+
+		            	</style>
+
+	                     <table class="gridtable2">
+	                    	<thead>
+	                    		<tr>
+		                    		<th colspan="5" rowspan="4" style="width:26%;">
+		                    			<h4 align="center"><b>BULLETIN DE PAIE</b></h4>
+		                    			<p align="left">CAMLAIT S.A</p>
+		                    			<p align="left">ZI BASSA</p>
+		                    			<br/>
+		                    			<p align="left">BP: 1838 - DOUALA</p>
+		                    			<br/>
+		                    			<p align="left">N SIRET: </p>
+		                    			<p align="left">APE / NAF: </p>
+		                    		</th>
+		                    		<th colspan="7" style="width:37%;">
+		                    			Période du : <span t-esc="o['period_date_from']"/> au  <span t-esc="o['period_date_to']"/></th>
+		                    		<th colspan="7" style="width:37%;">
+		                    			Paiement le : <span t-esc="o['date_paiement']"/> par  <span t-esc="o['methode_paiement']"/></th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="2">Matricule<br/><span t-esc="o['matricule']"/></th>
+		                    		<th colspan="2">Niveau<br/><span t-esc="o['niveau']"/></th>
+		                    		<th colspan="2">
+		                    			Coefficient<br/>
+		                    			<span t-esc="o['coefficient']"/>
+		                    		</th>
+		                    		<th colspan="2">
+		                    			Indice<br/>
+		                    			<span t-esc="o['indice']"/>
+		                    		</th>
+		                    		<th colspan="3">Ancienneté<b/><br/><span t-esc="o['anciennete']"/></th>
+		                    		<th colspan="3">N° de Sécurité Sociale<br/><span t-esc="o['secu_sociale']"/></th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="4">
+		                    			Catégorie<br/>
+		                    			<span t-esc="o['categorie']"/>
+		                    		</th>
+		                    		<th colspan="5">
+		                    			Emploi occupé<br/>
+		                    			<span t-esc="o['emploi']"/></th>
+		                    		<th colspan="5">
+		                    			Département<br/>
+		                    			<span t-esc="o['departement']"/>
+		                    		</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="3">Qualification<br/></th>
+		                    		<th colspan="1">Horaire<br/>173.33</th>
+		                    		<th colspan="10">CCN CONVENTION COLLECTIVE DES SOCIETES INDUSTRIELLES<br/></th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="5"><br/></th>
+		                    		<th colspan="3"><br/></th>
+		                    		<th colspan="11" rowspan="3">
+		                    			<p><span t-esc="o['nome']"/> <span t-esc="o['nom']"/> <span t-esc="o['prenom']"/></p>
+		                    			<br/>
+		                    			<p align="left"> <span t-esc="o['nom_centre']"/> </p>
+		                    		</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="2" style="width:10%;">Repos comp.<br/> Congé</th>
+		                    		<th colspan="2">Acquis<br/>0.000</th>
+		                    		<th colspan="2">Reste à prendre<br/>0.000</th>
+		                    		<th colspan="2">Pris<br/>0.000</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="8">
+		                    			Date de congés du<span style="color:white">Blanc</span>     <br/> <br/>
+										au <span style="color:white">Blanc</span>
+		                    			<br/><br/>
+		                    			
+		                    		</th>
+		                    	</tr>
+		                    	<tr>
+		                    		<th colspan="13">
+		                    			<p align="left">Commentaire: <br/></p>
+		                    		</th>
+		                    		<th colspan="2"><br/></th>
+		                    		<th colspan="2"><br/></th>
+		                    		<th colspan="2"><br/></th>
+		                    	</tr>
+		                    </thead>
+		                </table>
+		                <table class="gridtable3">
+                			<tr>
+                    			<th height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666; border-bottom: 1px solid #666666; width:2%; text-align: center;" rowspan="2">N</th>
+	                    		<th height="28" style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; width:24%; text-align: center;" rowspan="2">Désignation</th>
+	                    		<th height="28" style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; width:6%; text-align: center;" rowspan="2">Nombre</th>
+	                    		<th height="28" style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; width:11%; text-align: center;" rowspan="2">Base</th>
+	                    		<th height="28" style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; width:29%; text-align: center;" colspan="3">Part salariale</th>
+	                    		<th height="28" style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; width:29%; text-align: center;" colspan="3">Part patronale</th>
+	                    	</tr>
+	                    	<tr>
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;  border-bottom: 1px solid #666666; width: 7%;">Taux</td>
+	                    		<td style="border-right: 1px solid #666666;  border-bottom: 1px solid #666666; width: 11%;">Gain</td>
+	                    		<td style="border-right: 1px solid #666666;  border-bottom: 1px solid #666666; width: 11%;">Retenue</td>
+	                    		<td style="border-right: 1px solid #666666;  border-bottom: 1px solid #666666; width: 7%;">Taux</td>
+	                    		<td style="border-right: 1px solid #666666;  border-bottom: 1px solid #666666; width: 11%;">Retenue(+)</td>
+	                    		<td style="border-right: 1px solid #666666;  border-bottom: 1px solid #666666; width: 11%;">Retenue(-)</td>
+	                    	</tr>
+	                    	<tr t-foreach="o['gains']" t-as="ligne">
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;"><span t-esc="ligne['n']"/></td>
+	                    		<td style="border-right: 1px solid #666666; "><span t-esc="ligne['designation']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['nombre']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['base']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['retenue']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"/>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"/>
+	                    		<td style="border-right: 1px solid #666666;" class="text_number"/>
+	                    	</tr>
+	                    	<tr>
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;"/>
+	                    		<td style="border-right: 1px solid #666666; "><span t-esc="o['brut']['designation']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['brut']['nombre']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['brut']['base']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['brut']['taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['brut']['gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['brut']['retenue']"/></td>
+	                    		<td style="border-right: 1px solid #666666; "/>
+	                    		<td style="border-right: 1px solid #666666; "/>
+	                    		<td style="border-right: 1px solid #666666; "/>
+	                    	</tr>
+	                    	<tr t-foreach="o['chrgs_sal']" t-as="ligne">
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;"><span t-esc="ligne['n']"/></td>
+	                    		<td style="border-right: 1px solid #666666; "><span t-esc="ligne['designation']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['nombre']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['base']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['retenue']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_retenue']"/></td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;"><span t-esc="o['tot_cot']['n']"/></td>
+	                    		<td style="border-right: 1px solid #666666; "><span t-esc="o['tot_cot']['designation']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['nombre']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['base']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['retenue']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['p_taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['p_gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="o['tot_cot']['p_retenue']"/></td>
+	                    	</tr>
+	                    	<tr t-foreach="o['divers']" t-as="ligne">
+	                    		<td height="28" style="border-right: 1px solid #666666; border-left: 1px solid #666666;"><span t-esc="ligne['n']"/></td>
+	                    		<td style="border-right: 1px solid #666666; "><span t-esc="ligne['designation']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['nombre']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['base']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['retenue']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_taux']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_gain']"/></td>
+	                    		<td style="border-right: 1px solid #666666; " class="text_number"><span t-esc="ligne['p_retenue']"/></td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666; border-left: 1px solid #666666;"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    		<td style="border-right: 1px solid #666666; border-bottom: 1px solid #666666"><br/></td>
+	                    	</tr>
+	                    	
+	                    </table>
+
+						<br/>
+
+						<table class="gridtable">
+	                		<tfooter>
+	                    		<tr>
+		                    		<td colspan="2">Cumuls</td>
+		                    		<td colspan="2">Salaire Brut</td>
+		                    		<td colspan="2">Net Imposable</td>
+		                    		<td colspan="2">Charges salariales</td>
+		                    		<td colspan="2">Charges patronales</td>
+		                    		<td colspan="2">Heures travaillées</td>
+		                    		<td colspan="2">Heures suppl.</td>
+		                    		<td colspan="2">Av. en nature</td>
+		                    		<td colspan="3" style="background-color:#666; color: white;"><b>NET A PAYER</b></td>
+		                    	</tr>
+		                    	<tr>
+		                    		<td colspan="2">Période</td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['brut']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['sit']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['tot_chrgs_sal']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['tot_chrgs_pat']"/></td>
+		                    		<td colspan="2" class="text_number">173</td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['hsupp']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['avantage']"/></td>
+		                    		<td colspan="3" class="text_number" rowspan="2">
+		                    			<h4><b><span t-esc="o['infos']['net_a_payer']"/></b></h4>
+		                    		</td>
+		                    	</tr>
+		                    	<tr>
+		                    		<td colspan="2">Année</td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_brut']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_sit']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_cotsal']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_cotpat']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_travail']"/></td>
+		                    		<td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_hsupp']"/></td>
+                                    <td colspan="2" class="text_number"><span t-esc="o['infos']['cumul_avan']"/></td>
+		                    	</tr>
+	                    	</tfooter>
+	                	</table>
+
+						<p>Pour vous aider à faire valoir vos droits, conservez ce bulletin de paie sans limitation de durée.</p>
+
+	                </div>
+		        </t>
+		    </t>
+		</template>
+
+	</data>
+</openerp>

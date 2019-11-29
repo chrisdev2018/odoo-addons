@@ -1,0 +1,113 @@
+<openerp>
+	<data>
+
+		<report
+		    id="etat_cotisation_report"
+		    model="hr.payslip"
+		    string="Resume des cotisations"
+		    report_type="qweb-pdf"
+		    name="corpe_paie.etat_cotisation_template"
+		    file="Resume des cotisations"
+		/>
+
+		<template id="etat_cotisation_template">
+		    <t t-call="report.html_container">
+		    	<t t-call="report.external_layout">
+	                <div class="page">
+
+	                	<style type="text/css">
+
+							table.gridtable2 {
+								font-family: verdana,arial,sans-serif;
+								font-size:9px;
+								color:#333333;
+								border-width: 1px;
+								border-color: #666666;
+								border-collapse: collapse;
+								width: 100%;
+								table-layout: fixed;
+							}
+							table.gridtable2 td {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+								background-color: #ffffff;
+								vertical-align: top;
+							}
+
+							table.gridtable2 th {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+							}
+
+							.text_number {text-align: right;}
+
+
+		            	</style>
+
+		            	<table class="gridtable2">
+							<caption>
+		            			<h5 align="left">Date du jour: <b><span t-esc="data['infos']['date_impression']" /></b></h5>
+		            			<h5 align="left">Heure: <b><span t-esc="data['infos']['heure_impression']" /></b></h5>
+		            			<h5 align="left">Imprime par: <b><span t-esc="data['infos']['imprime_par']" /></b></h5>
+		            			<h3>ETAT RESUME DES COTISATIONS MENSUELLES</h3><br/>
+		            			<h4>Periode du <span t-esc="data['infos']['debut']" /> au <span t-esc="data['infos']['fin']" /> </h4><br/>
+		            			<h5 align="left">ETABLISSEMENT: <b><span t-esc="data['infos']['entete_tableau']" /></b></h5><br/>
+		            		</caption>
+	                    	<thead>
+	                    		<tr  style="background-color: #CCCCCC;">
+		                    		<th rowspan="2" style="width: 5%;">   </th>
+		                    		<th rowspan="2" style="width: 19%;">Rubrique de cotisations</th>
+		                    		<th rowspan="2" style="width: 6%;">Taux salarial</th>
+		                    		<th rowspan="2" style="width: 6%;">Taux patronal</th>
+		                    		<th rowspan="2" style="width: 6%;">Taux global</th>
+		                    		<th rowspan="2" style="width: 10%;">Assiette de cotisation</th>
+		                    		<th rowspan="2" style="width: 10%;">Base</th>
+		                    		<th rowspan="2" style="width: 10%;">Montant salarial</th>
+		                    		<th rowspan="2" style="width: 10%;">Montant patronal</th>
+		                    		<th rowspan="2" style="width: 10%;">Montant global</th>
+		                    		<th colspan="2" style="width: 8%;">Effectif</th>
+		                    	</tr>
+		                    	<tr style="background-color: #CCCCCC;">
+		                    		<th style="width: 4%;">H.</th>
+		                    		<th style="width: 4%;">F.</th>
+		                    	</tr>
+		                    </thead>
+		                    <tbody>
+		                    	<tr t-foreach="data['result']" t-as="line">
+		                    		<td><span t-esc="line['sequence']"/></td>
+		                    		<td><span t-esc="line['rubrique']"/></td>
+		                    		<td class="text_number"><span t-esc="line['taux_sal']"/></td>
+		                    		<td class="text_number"><span t-esc="line['taux_pat']"/></td>
+		                    		<td class="text_number"><span t-esc="line['taux_gen']"/></td>
+		                    		<td class="text_number"><span t-esc="line['assiette']"/></td>
+		                    		<td class="text_number"><span t-esc="line['base']"/></td>
+		                    		<td class="text_number"><span t-esc="line['montant_salarial']"/></td>
+		                    		<td class="text_number"><span t-esc="line['montant_patronal']"/></td>
+		                    		<td class="text_number"><span t-esc="line['montant_global']"/></td>
+		                    		<td class="text_number"><span t-esc="line['nbre_hommes']"/></td>
+		                    		<td class="text_number"><span t-esc="line['nbre_femmes']"/></td>
+		                    	</tr>
+		                    </tbody>
+		                    <tfooter>
+		                    	<tr style="font-size: 11px;">
+		                    		<td/>
+		                    		<td colspan="6">Total</td>
+		                    		<td class="text_number" ><b><span t-esc="data['totaux']['totaux_salarial']" /></b></td>
+		                    		<td class="text_number" ><b><span t-esc="data['totaux']['totaux_patronal']" /></b></td>
+		                    		<td class="text_number" ><b><span t-esc="data['totaux']['totaux_global']" /></b></td>
+		                    		<td colspan="2"></td>
+		                    	</tr>
+		                    </tfooter>
+		                </table>
+
+	                </div>
+		        </t>
+		    </t>
+		</template>
+
+	</data>
+</openerp>

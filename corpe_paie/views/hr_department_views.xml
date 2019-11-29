@@ -1,0 +1,29 @@
+<openerp>
+    <data>
+              
+        <record id="hr_department_form_view" model="ir.ui.view">
+            <field name="name">hr.department.form</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form" />
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+
+                <field name="name" position="after">
+                    <field name="code_centre" />
+                    <field name="nom_centre" />
+                </field>
+
+                <xpath expr="//field[@name='parent_id']/.." position="after">
+                    <notebook>
+                        <page name="accounting" string="Comptabilite">
+                            <group>
+                                <field name="analytic_account_id" />
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</openerp>

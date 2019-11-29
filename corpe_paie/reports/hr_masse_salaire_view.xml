@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="view_ptba_user_graph" model="ir.ui.view">
+            <field name="name">corpe_paie.report_hr_masse_salaire.graph</field>
+            <field name="model">corpe_paie.report_hr_masse_salaire</field>
+            <field name="arch" type="xml">
+              <graph string="Analyse masse salariale" type="pivot">
+                <field name="salary_rule_id" type="col"/>
+                <field name="name_related" type="row"/>
+                <field name="total" type="measure"/>
+              </graph>
+            </field>
+        </record>
+
+        <!-- Custom reports (aka filters) -->
+    
+     
+        <!-- <record id="filter_hr_masse_salair_emp" model="ir.filters">
+            <field name="name">Par regle</field>
+            <field name="model_id">report.hr.masse_salaire</field>
+            <field name="context">{'group_by': ['salary_rule_id']}</field>
+        </record>
+        
+        <record id="filter_hr_masse_salair_per" model="ir.filters">
+            <field name="name">Par periode</field>
+            <field name="model_id">report.hr.masse_salaire</field>
+            <field name="context">{'group_by': ['per_id']}</field>
+        </record>
+		
+        <record id="filter_hr_masse_salair_em" model="ir.filters">
+            <field name="name">Par employe</field>
+            <field name="model_id">report.hr.masse_salaire</field>
+            <field name="context">{'group_by': ['employee_id']}</field>
+        </record>
+        
+        <record id="filter_hr_masse_salair_cate" model="ir.filters">
+            <field name="name">Par categorie</field>
+            <field name="model_id">report.hr.masse_salaire</field>
+            <field name="context">{'group_by': ['category_id']}</field>
+        </record>
+
+        <record id="view_report_masse_salaire_search" model="ir.ui.view">
+            <field name="name">report.hr.masse_salaire.search</field>
+            <field name="model">report.hr.masse_salaire</field>
+            <field name="arch" type="xml">
+              <search string="Analyse de la masse salariale">
+                <filter string="Employe" name="employee_id" />
+					      <filter string="Categorie de regle" name="category_id" />
+                <filter string="Periode " name="per_id" />
+					      <filter string="Bulettin " name="slip_id" />
+					      <filter string="Regle salariale" name="salary_rule_id" />
+              </search>
+            </field>
+        </record> -->
+
+       <record id="action_view_report_masse_salaire_tree" model="ir.actions.act_window">
+            <field name="name">Analyse de la masse salariale</field>
+            <field name="res_model">corpe_paie.report_hr_masse_salaire</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">graph</field>
+            <!-- <field name="search_view_id" ref="view_report_masse_salaire_search"/> -->
+            <!-- <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field> -->
+            <field name="help">This report allows you to analyse the performance of your projects and users. You can analyse the quantities of tasks, the hours spent compared to the planned hours, the average number of days to open or close a task, etc.</field>
+        </record>
+
+        
+        <menuitem 
+            action="action_view_report_masse_salaire_tree"
+            id="menu_hr_masse"
+            name="Analyse masse salariale"
+            parent="hr_payroll.menu_hr_root_payroll"/>
+    </data>
+</openerp>

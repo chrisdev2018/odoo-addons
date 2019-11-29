@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_etat_cotisation_wizard" model="ir.ui.view">
+			<field name="name">Impression de la DIPES mensuel</field>
+			<field name="model">corpe_paie.etat_cotisation_wizard</field>
+			<field name="arch" type="xml">
+				<form >
+					<group>
+						<group>
+							<field name="mois" required="1"/>
+							<field name="_centre"/>
+						</group>
+						<group>
+							<field name="annee" required="1"/>
+							<field name="categorie_regle_sal" />
+							<field name="categorie_regle_pat" />
+							<field name="regle_sal_assiette" />
+						</group>
+					</group>
+					<group>
+					</group>
+					<button name="generate" type="object" string="Generer" class="oe_highlight"/>
+					<button string="Annuler" class="oe_link" special="cancel"/>
+				</form>
+			</field>
+		</record>
+
+		<act_window 
+			id="action_etat_cotisation_wizard"
+			name="RESUME DES COTISATIONS"
+			res_model="corpe_paie.etat_cotisation_wizard"
+			view_type="form"
+			view_mode="form"
+			target="new" />
+
+		<menuitem
+            name="RESUME DES COTISATIONS"
+            parent="hr_payroll.menu_hr_root_payroll"
+            action="action_etat_cotisation_wizard"
+            id="menu_hr_root_payroll_etat_cotisation"
+            icon="terp-graph"/>
+
+	</data>
+</openerp>

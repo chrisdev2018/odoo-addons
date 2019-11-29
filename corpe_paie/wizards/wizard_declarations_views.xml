@@ -1,0 +1,48 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="declarations_wizard_form_view">
+            <field name="name">corpe_paie.declarations_wizard</field>
+            <field name="model">corpe_paie.declarations_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Imprimer l'etat des declarations">
+                    <div>
+                        <h3>Période de la paie</h3>
+                    </div>
+                    <group colspan="4" col="4">
+                        <group colspan="2">
+                            <field name="mois"/>
+                            <field name="name"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="annee"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="imprimer" type="object"
+                                string="Imprimer" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window 
+            id="launch_declarations_wizard"
+            name="DECLARATIONS"
+            src_model="corpe_paie.declarations_wizard"
+            res_model="corpe_paie.declarations_wizard"
+            view_mode="form"
+            target="new"/>
+        
+        <menuitem
+            parent="hr_payroll.menu_hr_root_payroll"
+            id="menu_payroll_declarations"
+            name="DECLARATIONS"
+            action="launch_declarations_wizard"
+            sequence="25"/>
+
+    </data>
+
+</openerp>

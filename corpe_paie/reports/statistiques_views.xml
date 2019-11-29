@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+		<report
+		    id="report_statistique_xls"
+		    model="corpe_paie.statistiques_wizard"
+		    string="Statistique paie"
+		    report_type="xls"
+		    name="corpe_paie.statistiques_wizard.xls"
+		    file="corpe_paie.statistiques_wizard.xls"
+		    attachment_use="False"
+		/>
+
+
+	</data>
+</openerp>

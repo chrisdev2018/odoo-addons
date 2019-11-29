@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+
+        <record id="view_hr_salary_rule_form" model="ir.ui.view">
+                <field name="name">hr.salary.rule.form</field>
+                <field name="model">hr.salary.rule</field>     
+                <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form"/>
+                <field name="priority">20</field>
+                <field name="arch" type="xml">
+                    
+                    <field name="note" position="before">
+                        <group>
+                            <field name="a_comptabiliser" />
+                            <field name="account_debit" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="account_credit" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="account_tax_id" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="partner_rule" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="analytic_account_id" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="is_analytic_account" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                            <field name="use_personal_account" attrs="{'invisible': [('a_comptabiliser', '=', False)]}"/>
+                        </group>
+                    </field>
+
+
+                </field>
+        </record>
+
+    </data>
+</openerp>

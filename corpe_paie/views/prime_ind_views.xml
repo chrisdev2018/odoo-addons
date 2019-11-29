@@ -1,0 +1,44 @@
+<openerp>
+    <data>
+
+        <record id="prime_ind_tree_view" model="ir.ui.view">
+            <field name="name">corpe_paie.prime_ind.tree</field>
+            <field name="model">corpe_paie.prime_ind</field>
+            <field name="arch" type="xml">
+                
+                <tree string="Lignes indemnites de contrat" editable="top">
+                    <field name="code"/>
+                    <field name="regle_salariale"/>
+                    <field name="contrat_id"/>
+                    <field name="montant"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="prime_ind_search_view">
+            <field name="name">corpe_paie.prime_ind.search</field>
+            <field name="model">corpe_paie.prime_ind</field>
+            <field name="arch" type="xml">
+                <search string="Recherche de lignes indemnite de contrat">
+                    <field name="regle_salariale"/>
+                    <field name="contrat_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="prime_ind_action_view">
+            <field name="name">Grille des salaires </field>
+            <field name="res_model">corpe_paie.prime_ind</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem
+            parent="hr_payroll.payroll_configure"
+            sequence="20"
+            id="menu_lignes_prime_ind"
+            name="Lignes primes indemnites"
+            action="prime_ind_action_view" />
+
+    </data>
+</openerp>

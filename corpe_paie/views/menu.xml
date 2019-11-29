@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- MENU PARAMETRE DE LA GRILLE SALARIALE -->
+
+        <menuitem
+        	parent="hr_payroll.payroll_configure"
+            id="menu_param_grille_salariale"
+            name="Paramètres de la grille salariale"
+            sequence="50"/>
+
+
+    </data>
+</openerp>

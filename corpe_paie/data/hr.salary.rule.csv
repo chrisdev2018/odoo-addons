@@ -1,0 +1,382 @@
+id,name,category_id/id,code,sequence,appears_on_payslip,condition_select,condition_range,condition_range_max,condition_range_min,condition_python,amount_select,quantity,amount_fix,amount_percentage_base,amount_percentage,amount_python_compute,register_id/id
+corpe_paie.hr_salary_rule_4,Salaire de base,corpe_paie.hr_salary_rule_category_16,BASE,1,True,Toujours vrai,contract.wage,0,0,result = rules.NET > categories.NET * 0.10,Code Python,1,0,,0,result = contract.wage,
+corpe_paie.hr_salary_rule_5,Prime de responsabilité,corpe_paie.hr_salary_rule_category_9,RESPONSABILITE,100,True,Expression Python,contract.wage,0,0,result = (inputs.RESPONSABILITE and inputs.RESPONSABILITE.amount) or False,Code Python,1,0,,0,"
+result = inputs.RESPONSABILITE.amount",
+corpe_paie.hr_salary_rule_6,Prime d'ancienneté,corpe_paie.hr_salary_rule_category_9,ANCIENNETE,105,True,Expression Python,contract.wage,0,0,"
+result = (inputs.ANCIENNETE and inputs.ANCIENNETE.amount) or False",Code Python,1,0,,0,result = inputs.ANCIENNETE.amount,
+corpe_paie.hr_salary_rule_7,Prime d'assiduite,corpe_paie.hr_salary_rule_category_9,ASSIDUITE,210,True,Expression Python,contract.wage,0,0,result = (inputs.ASSIDUITE and inputs.ASSIDUITE.amount) or False,Code Python,1,0,,0,result  = inputs.ASSIDUITE.amount,
+corpe_paie.hr_salary_rule_8,Prime de transport,corpe_paie.hr_salary_rule_category_15,TRANSPORT,220,True,Expression Python,contract.wage,0,0,result = (inputs.TRANSPORT and inputs.TRANSPORT.amount) or False,Code Python,1,0,,0,"
+result = inputs.TRANSPORT.amount",
+corpe_paie.hr_salary_rule_9,Prime de logement,corpe_paie.hr_salary_rule_category_15,LOGEMENT,222,True,Expression Python,contract.wage,0,0,"
+result = (inputs.LOGEMENT and inputs.LOGEMENT.amount) or False",Code Python,1,0,,0,result = inputs.LOGEMENT.amount,
+corpe_paie.hr_salary_rule_10,Prime d'entretien véhicule,corpe_paie.hr_salary_rule_category_15,VOITURE,225,True,Expression Python,contract.wage,0,0,result = (inputs.VOITURE and inputs.VOITURE.amount) or False,Code Python,1,0,,0,result = inputs.VOITURE.amount,
+corpe_paie.hr_salary_rule_11,Prime de vente,corpe_paie.hr_salary_rule_category_9,VENTE,104,True,Expression Python,contract.wage,0,0,result = (inputs.VENTE and inputs.VENTE.amount) or False,Code Python,1,0,,0,result = inputs.VENTE.amount,
+corpe_paie.hr_salary_rule_12,Prime de rendement,corpe_paie.hr_salary_rule_category_9,RENDEMENT,224,True,Expression Python,contract.wage,0,0,result = (inputs.RENDEMENT and inputs.RENDEMENT.amount) or False,Code Python,1,0,,0,result = inputs.RENDEMENT.amount,
+corpe_paie.hr_salary_rule_13,Indemnité de representation,corpe_paie.hr_salary_rule_category_15,REPRESENTATION,110,True,Expression Python,contract.wage,0,0,result = (inputs.REPRESENTATION and inputs.REPRESENTATION.amount) or False,Code Python,1,0,,0,result = inputs.REPRESENTATION.amount,
+corpe_paie.hr_salary_rule_14,Indemnités de congés,corpe_paie.hr_salary_rule_category_9,CONGES,109,True,Expression Python,contract.wage,0,0,result = (inputs.CONGES and inputs.CONGES.amount) or False,Code Python,1,0,,0,result = inputs.CONGES.amount,
+corpe_paie.hr_salary_rule_15,Panier de nuit,corpe_paie.hr_salary_rule_category_9,NUIT,106,True,Expression Python,contract.wage,0,0,result = (inputs.NUIT and inputs.NUIT.amount) or False,Code Python,1,0,,0,result = inputs.NUIT.amount,
+corpe_paie.hr_salary_rule_16,Heures Sup à 20%,corpe_paie.hr_salary_rule_category_9,HS20,300,True,Expression Python,contract.wage,0,0,result = (inputs.HS20 and inputs.HS20.amount) or False,Code Python,1,0,,0,result = inputs.HS20.amount,
+corpe_paie.hr_salary_rule_17,Heures Sup à 30%,corpe_paie.hr_salary_rule_category_9,HS30,301,True,Expression Python,contract.wage,0,0,result = (inputs.HS30 and inputs.HS30.amount) or False,Code Python,1,0,,0,result = inputs.HS30.amount,
+corpe_paie.hr_salary_rule_18,Heures Sup à 40%,corpe_paie.hr_salary_rule_category_9,HS40,302,True,Expression Python,contract.wage,0,0,result = (inputs.HS40 and inputs.HS40.amount) or False,Code Python,1,0,,0,result = inputs.HS40.amount,
+corpe_paie.hr_salary_rule_19,IRPP,corpe_paie.hr_salary_rule_category_10,IRPP,1000,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"result = 0.0
+
+if (SB > 62000 and SB <= 310000) :
+   result = ((SB * 0.7) - (SB * 0.042) - 41667) * 0.1
+elif (SB > 310000 and SB <= 429000) :
+    result = 16963 +( (SB - 310000) * 0.7 * 0.15)
+elif (SB > 429000 and SB <= 667000) :
+    result = 29188 + ((SB - 429000) * 0.7 * 0.25)
+elif (SB > 667000 ) :
+    result = 70830 +( (SB - 667000) * 0.7 * 0.35)",
+corpe_paie.hr_salary_rule_20,CAC/IRPP,corpe_paie.hr_salary_rule_category_10,CAC/IRPP,1001,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = IRPP * 0.1,
+corpe_paie.hr_salary_rule_21,Taxe developpement local,corpe_paie.hr_salary_rule_category_10,TDL,1002,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = BASE
+result = 0.0
+
+if (base > 62000 and base <= 75000) :
+    result = 3000/12
+elif (base > 75000 and base <= 100000) :
+    result = 6000/12
+elif (base > 100000 and base <= 125000) :
+    result = 9000/12
+elif (base > 125000 and base <= 150000) :
+    result = 12000/12
+elif (base > 150000 and base <= 200000) :
+    result = 15000/12
+elif (base > 200000 and base <= 250000) :
+    result = 18000/12
+elif (base > 250000 and base <= 300000) :
+    result = 24000/12
+elif (base > 300000 and base <= 500000) :
+    result = 27000/12
+elif (base > 500000) :
+    result = 30000/12",
+corpe_paie.hr_salary_rule_22,Crédit Foncier (P. Sal),corpe_paie.hr_salary_rule_category_10,CFS,1003,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = SBT - (SBT%1000)
+
+result = base * 0.01",
+corpe_paie.hr_salary_rule_23,Crédit Foncier (P. Pat),corpe_paie.hr_salary_rule_category_11,CFP,1004,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = SBT - (SBT%1000)
+
+result =base * 0.015",
+corpe_paie.hr_salary_rule_24,Redevance audiovisuel,corpe_paie.hr_salary_rule_category_10,RAV,1005,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = SBT
+result = 0.0
+
+if (base <= 50000) :
+    result = 0.0
+elif (base > 50000 and base <= 100000) :
+    result = 750
+elif (base > 100000 and base <= 200000) :
+    result = 1950
+elif (base > 200000 and base <= 300000) :
+    result = 3250
+elif (base > 300000 and base <= 400000) :
+    result = 4550
+elif (base > 400000 and base <= 500000) :
+    result = 5850
+elif (base > 500000 and base <= 600000) :
+    result = 7150
+elif (base > 600000 and base <= 700000) :
+    result = 8450
+elif (base > 700000 and base <= 800000) :
+    result = 9750
+elif (base > 800000 and base <= 900000) :
+    result = 11050
+elif (base > 900000 and base <= 1000000) :
+    result = 12350
+elif (base > 1000000) :
+    result = 13000
+",
+corpe_paie.hr_salary_rule_25,Fonds National de l'Empoi,corpe_paie.hr_salary_rule_category_11,FNE,1007,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = SBT * 0.01,
+corpe_paie.hr_salary_rule_26,Pension Vieillesse (P. Sal),corpe_paie.hr_salary_rule_category_10,PVID_SAL,1008,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = SC
+
+if base < 750000 :
+    result = base * 0.042
+else : result = 31500",hr_payroll.contrib_register_employees
+corpe_paie.hr_salary_rule_27,Prestations familiales,corpe_paie.hr_salary_rule_category_11,PF,1009,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,co,0,"base = SC
+
+if base < 750000 :
+   result = base * 0.07
+else : result = 750000 * 0.07",
+corpe_paie.hr_salary_rule_28,Pensions Vieillesse (P. Pat),corpe_paie.hr_salary_rule_category_11,PVID_PAT,1010,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,"base = SC
+
+if base < 750000 :
+    result = base * 0.042
+else : result = 31500",
+corpe_paie.hr_salary_rule_29,Risques professionels,corpe_paie.hr_salary_rule_category_11,RP,1011,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,SC,0.05,result = SC * 0.05,
+corpe_paie.hr_salary_rule_30,Syndicat,corpe_paie.hr_salary_rule_category_10,SYNDICAT,1012,True,Expression Python,contract.wage,0,0,result = inputs.SYNDICAT or False,Code Python,1,0,,0,result = BASE * 0.01,
+corpe_paie.hr_salary_rule_31,Mutuelle,corpe_paie.hr_salary_rule_category_10,MUTUELLE,1013,True,Expression Python,contract.wage,0,0,result = inputs.MUTUELLE or False,Montant fixe,1,500,,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days.
+# inputs: object containing the computed inputs.
+
+# Note: returned value have to be set in the variable 'result'
+
+result = contract.wage * 0.10",
+corpe_paie.hr_salary_rule_32,Avances/Acomptes,corpe_paie.hr_salary_rule_category_12,AVANCES,1014,True,Expression Python,contract.wage,0,0,result = (inputs.AVANCES and inputs.AVANCES.amount) or False,Code Python,1,0,,0,result = inputs.AVANCES.amount,
+corpe_paie.hr_salary_rule_33,Prêt enteprise,corpe_paie.hr_salary_rule_category_12,PRET,1015,True,Expression Python,contract.wage,0,0,result = (inputs.PRET and inputs.PRET.amount) or False,Code Python,1,0,,0,result = inputs.PRET.amount,
+corpe_paie.hr_salary_rule_34,Assurance,corpe_paie.hr_salary_rule_category_12,ASSURANCE,1016,True,Expression Python,contract.wage,0,0,result = (inputs.ASSURANCE and inputs.ASSURANCE.amount) or False,Code Python,1,0,,0,result = inputs.ASSURANCE.amount,
+corpe_paie.hr_salary_rule_35,Salaire Brut,corpe_paie.hr_salary_rule_category_17,SB,999,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = (BASE - categories.DED) + categories.PRIMES ,
+corpe_paie.hr_salary_rule_36,Salaire Cotisable,corpe_paie.hr_salary_rule_category_13,SC,998,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = (BASE - categories.DED) + categories.ELT_SC + categories.ELT_SBT_SC,
+corpe_paie.hr_salary_rule_37,Salaire Brut Taxable,corpe_paie.hr_salary_rule_category_13,SBT,997,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = SIT + categories.PART_TAX,
+corpe_paie.hr_salary_rule_38,Total cotisations (sal),corpe_paie.hr_salary_rule_category_13,TOT_COT_SAL,9997,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = categories.CHG_SAL,
+corpe_paie.hr_salary_rule_39,Total retenues,corpe_paie.hr_salary_rule_category_13,TOT_RET,9998,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = TOT_COT_SAL + categories.DIVERS,
+corpe_paie.hr_salary_rule_40,Net à Payer,corpe_paie.hr_salary_rule_category_19,NAP,10000,True,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = SB - TOT_RET,
+corpe_paie.hr_salary_rule_41,Salaire période non travailée,corpe_paie.hr_salary_rule_category_14,NON_TRAVAIL,5,True,Expression Python,contract.wage,0,0,result = (inputs.NON_TRAVAIL and inputs.NON_TRAVAIL.amount) or False,Code Python,1,0,,0,result = inputs.NON_TRAVAIL.amount,
+corpe_paie.hr_salary_rule_42,Heures Sup à 50%,corpe_paie.hr_salary_rule_category_9,HS50,303,True,Expression Python,contract.wage,0,0,result = (inputs.HS50 and inputs.HS50.amount) or False,Code Python,1,0,,0,result = inputs.HS50.amount,
+corpe_paie.hr_salary_rule_43,Prime de remplacement,corpe_paie.hr_salary_rule_category_9,REMPLACEMENT,226,True,Expression Python,contract.wage,0,0,result = (inputs.REMPLACEMENT and inputs.REMPLACEMENT.amount) or False,Code Python,1,0,,0,result = inputs.REMPLACEMENT.amount,
+corpe_paie.hr_salary_rule_44,Total cotisations (Pat),corpe_paie.hr_salary_rule_category_13,TOT_COT_PAT,9999,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = categories.CHG_PAT,
+corpe_paie.hr_salary_rule_45,Salaire taxable intermédiaire,corpe_paie.hr_salary_rule_category_13,SIT,986,False,Toujours vrai,contract.wage,0,0,"
+# Available variables:
+#----------------------
+# payslip: object containing the payslips
+# employee: hr.employee object
+# contract: hr.contract object
+# rules: object containing the rules code (previously computed)
+# categories: object containing the computed salary rule categories (sum of amount of all rules belonging to that category).
+# worked_days: object containing the computed worked days
+# inputs: object containing the computed inputs
+
+# Note: returned value have to be set in the variable 'result'
+
+result = rules.NET > categories.NET * 0.10",Code Python,1,0,,0,result = (BASE - categories.DED) + categories.ELT_SBT + categories.ELT_SBT_SC,
+corpe_paie.hr_salary_rule_46,Logement taxable,corpe_paie.hr_salary_rule_category_20,LOGE_TAX,990,True,Expression Python,contract.wage,0,0,result = (inputs.LOGEMENT and inputs.LOGEMENT.amount) or False,Code Python,1,0,SIT,15,"result = min(LOGEMENT,SIT * 0.15)",
+corpe_paie.hr_salary_rule_47,Transport taxable,corpe_paie.hr_salary_rule_category_20,TRANS_TAX,991,True,Expression Python,contract.wage,0,0,result = (inputs.TRANSPORT and inputs.TRANSPORT.amount) or False,Code Python,1,0,SIT,10,"result = min(TRANSPORT,SIT * 0.1)",
+corpe_paie.hr_salary_rule_48,Vehicule taxable,corpe_paie.hr_salary_rule_category_20,VOITURE_TAX,992,True,Expression Python,contract.wage,0,0,result = ( inputs.VOITURE and inputs.VOITURE.amount) or False,Code Python,1,0,SIT,10,"result = min(VOITURE,SIT * 0.1)",

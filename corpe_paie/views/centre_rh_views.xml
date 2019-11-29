@@ -1,0 +1,48 @@
+<openerp>
+    <data>
+
+        <record id="centre_rh_form_view" model="ir.ui.view">
+            <field name="name">centre.rh.form</field>
+            <field name="model">corpe_paie.centre_rh</field>
+            <field name="arch" type="xml">
+                <form string="Centres/Etablissements">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="code" />
+                            </group>
+                            <group></group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="centre_rh_tree_view" model="ir.ui.view">
+            <field name="name">centre.rh.tree</field>
+            <field name="model">corpe_paie.centre_rh</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code" />
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="centre_rh_action_view">
+            <field name="name">Centres/Etablissements</field>
+            <field name="res_model">corpe_paie.centre_rh</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+        	parent="hr.menu_hr_configuration"
+            id="menu_centre_rh"
+            name="Centres/Etablissements"
+            sequence="2"
+            action="centre_rh_action_view"/>
+    </data>
+</openerp>

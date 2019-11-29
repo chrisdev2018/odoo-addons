@@ -1,0 +1,87 @@
+<openerp>
+    <data>
+
+        <record id="banque_tree_view" model="ir.ui.view">
+            <field name="name">corpe_paie.banque.tree</field>
+            <field name="model">corpe_paie.banque</field>
+            <field name="arch" type="xml">
+
+                <tree string="Banques des salalaries">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id="banque_form_view" model="ir.ui.view">
+            <field name="name">corpe_paie.banque.form</field>
+            <field name="model">corpe_paie.banque</field>
+            <field name="arch" type="xml">
+
+                <form string="Formulaire des banques">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <group colspan="2">
+                                <field name="name" />
+                            </group>
+                            <group colspan="2">
+                                <field name="code" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="banque_search_view">
+            <field name="name">corpe_paie.banque.search</field>
+            <field name="model">corpe_paie.banque</field>
+            <field name="arch" type="xml">
+                <search string="Recherche de Banque">
+                    <field name="code"/>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="banque_form_view" model="ir.ui.view">
+            <field name="name">corpe_paie.banque.form</field>
+            <field name="model">corpe_paie.banque</field>
+            <field name="arch" type="xml">
+
+                <form string="Formulaire des banques">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <group colspan="2">
+                                <field name="name" />
+                            </group>
+                            <group colspan="2">
+                                <field name="code" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="banque_action_view">
+            <field name="name">Banques des salaries </field>
+            <field name="res_model">corpe_paie.banque</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+        	parent="hr.menu_hr_configuration"
+            id="menu_param_banque"
+            name="Gerer les Banques"
+            sequence="8"
+            action="banque_action_view"/>
+
+    </data>
+</openerp>

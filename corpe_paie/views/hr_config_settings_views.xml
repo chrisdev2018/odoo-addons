@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="view_human_resources_configuration">
+            <field name="name">hr settings</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="model">hr.config.settings</field>
+            <field name="priority" eval="18" />
+            <field name="arch" type="xml">
+
+                <xpath expr="//group[@name='contract_grp']" position="after">
+                    <group name="paie_settings">
+                        <label for="id" string="Paie"/>
+                        <div>
+                            <div>
+                                <field name="jour_paiement" class="oe_inline"/>
+                                <label for="jour_paiement"/>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+
+        <record id="hr_payslip_run_form" model="ir.ui.view">
+                <field name="name">hr.payslip.run.form</field>
+                <field name="model">hr.payslip.run</field>     
+                <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+                <field name="priority">30</field>
+                <field name="arch" type="xml">
+                    
+                    <field name="credit_note" position="after">
+                        <field name="date_paiement" />
+                        <field name="move" attrs="{'invisible': [('move', '=', False)]}"/>
+                        <field name="journal_id" options="{'no_create_edit': True}"/>
+                        <field name="partner_payroll" />
+                    </field>
+
+                    <button name="draft_payslip_run" position="after">
+                        <button string="Calculer Bulletins" name="compute_all_payslip" type="object" states="draft"/>
+                        <button string="Remettre En Brouillon" name="set_to_draft" type="object" states="draft"/>
+                        <button string="Valider tous les bulletins" name="validate_payslip" type="object" states="draft"/>
+                        <button string="Generer Ecritures" name="generate_move" type="object" />
+                    </button>
+
+                </field>
+        </record>
+
+    </data>
+</openerp>

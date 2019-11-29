@@ -1,0 +1,21 @@
+id,perm_write,perm_create,perm_read,perm_unlink,group_id/id,name,model_id/id
+corpe_paie.access_prime_ind_manager,1,1,1,1,base.group_hr_manager,prime_ind_manager wcru,corpe_paie.model_corpe_paie_prime_ind
+corpe_paie.access_prime_ind_rh_group_manager,0,0,1,0,corpe_rh_center.rh_group_manager,prime_ind_rh_group_manager r,corpe_paie.model_corpe_paie_prime_ind
+corpe_paie.access_prime_ind_officer,0,0,1,0,base.group_hr_user,prime_ind_officer r,corpe_paie.model_corpe_paie_prime_ind
+,,,,,,,
+,,,,,,,
+acces_cat_sal_utilisateur_paie,1,1,1,1,base.group_hr_manager,cat_salar_rwcd manager paie,model_corpe_paie_categorie_salariale
+acces_cat_sal_manager_paie,1,1,1,1,corpe_rh_center.rh_group_manager,cat_salar_rwcd manager centre paie,model_corpe_paie_categorie_salariale
+acces_cat_sal_default,0,0,0,0,,cat_salar_r default,model_corpe_paie_categorie_salariale
+,,,,,,,
+acces_ech_sal_utilisateur_paie,1,1,1,1,base.group_hr_manager,ech_salar_rwcd manager paie,model_corpe_paie_echelon_salariale
+acces_ech_sal_manager_paie,1,1,1,1,corpe_rh_center.rh_group_manager,ech_salar_rwcd manager centre paie,model_corpe_paie_echelon_salariale
+acces_ech_sal_default,0,0,0,0,,ech_salar_r default,model_corpe_paie_echelon_salariale
+,,,,,,,
+acces_grill_sal_utilisateur_paie,1,1,1,1,base.group_hr_manager,grill_salar_r manager paie,model_corpe_paie_grille_salaire
+acces_grill_sal_manager_paie,0,1,1,0,corpe_rh_center.rh_group_manager,grill_salar_rwcd manager centre paie,model_corpe_paie_grille_salaire
+acces_grill_sal_default,0,0,0,0,,grill_salar_r default,model_corpe_paie_grille_salaire
+,,,,,,,
+acces_corpe_paie_banque_all,0,0,1,0,,all_r_corpe_paie_banque,corpe_paie.model_corpe_paie_banque
+acces_corpe_paie_banque_rh_manager,1,1,1,1,base.group_hr_manager,rh_manager_rwcd_corpe_banque,corpe_paie.model_corpe_paie_banque
+acces_corpe_paie_centre_rh_manager,1,1,1,1,base.group_hr_manager,all_rwcd_corpe_paie_centre_rh,corpe_paie.model_corpe_paie_centre_rh

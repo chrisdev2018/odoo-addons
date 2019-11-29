@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<openerp>
+    <data>
+
+        <record id="view_hr_payslip_form" model="ir.ui.view">
+                <field name="name">hr.payslip.form</field>
+                <field name="model">hr.payslip</field>     
+                <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+                <field name="priority">20</field>
+                <field name="arch" type="xml">
+                    
+                    <field name="name" position="after">
+                        <field name="date_paiement" />
+                        <field name="annee_anciennete" invisible="1"/>
+                        <field name="anciennete" />
+                        <field name="nb_jours" invisible="1"/>
+                        <field name="base"/>
+                        <field name="base_indiciel"/>
+                        <field name="grille_salariale"/>
+                    </field>
+
+
+                </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		
+		<record id="view_dipes_nominal_wizard" model="ir.ui.view">
+			<field name="name">DIPE NOMINAL</field>
+			<field name="model">corpe_paie.dipes_nominal_wizard</field>
+			<field name="arch" type="xml">
+				<form >
+					<div>
+                        <h3>Période de la paie</h3>
+                    </div>
+					<group colspan="4" col="4">
+                        <group colspan="2">
+                            <field name="mois"/>
+                            <field name="name"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="annee"/>
+                        </group>
+                    </group>
+					<button name="imprimer" type="object" string="Generer" class="oe_highlight"/>
+					<button string="Annuler" class="oe_link" special="cancel"/>
+				</form>
+			</field>
+		</record>
+
+		<act_window 
+			id="action_dipes_nominal_wizard"
+			name="DIPES NOMINAL"
+			res_model="corpe_paie.dipes_nominal_wizard"
+			view_type="form"
+			view_mode="form"
+			target="new" />
+
+		<menuitem
+            name="DIPE NOMINAL"
+            parent="hr_payroll.menu_hr_root_payroll"
+            action="action_dipes_nominal_wizard"
+            id="menu_dipes_nominal_wizard"
+            icon="terp-graph"/>
+
+	</data>
+</openerp>

@@ -1,0 +1,9 @@
+<openerp>
+    <data>
+
+        <record id="hr_payroll.menu_hr_root_payroll" model="ir.ui.menu">
+            <field name="groups_id" eval="[(4, ref('base.group_hr_manager'))]" />
+        </record>
+
+    </data>
+</openerp>

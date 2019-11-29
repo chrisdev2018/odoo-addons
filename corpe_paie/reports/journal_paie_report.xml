@@ -1,0 +1,128 @@
+<openerp>
+	<data>
+
+		<report
+		    id="journal_paie_report"
+		    model="hr.payslip.run"
+		    string="Journal de controle"
+		    report_type="qweb-pdf"
+		    menu="True"
+		    name="corpe_paie.journal_paie_template"
+		    file="corpe_paie.journal_paie_template"
+		/>
+
+		<template id="journal_paie_template">
+		    <t t-call="report.html_container">
+	            <t t-call="report.external_layout">
+
+	                <div class="page">
+
+	                	<style type="text/css">
+
+		            		table.gridtable {
+								font-family: verdana,arial,sans-serif;
+								font-size:11px;
+								color:#333333;
+								border-width: 1px;
+								border-color: #666666;
+								border-collapse: collapse;
+								width: 100%;
+							}
+							table.gridtable th {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+								background-color: #dedede;
+							}
+							table.gridtable td {
+								border-width: 1px;
+								padding: 8px;
+								border-style: solid;
+								border-color: #666666;
+								background-color: #ffffff;
+							}
+
+							.text_number {text-align: right;}
+
+
+		            	</style>
+
+	                    <h2 align="center">JOURNAL DE CONTROLE</h2>
+	                    <p>DATE : <!-- <span t-esc="time.strftime('%d / %m / %Y',time.strptime(infos['date_debut'],'%Y-%m-%d'))"/>  à  <span t-esc="time.strftime('%d / %m / %Y',time.strptime(infos['date_fin'],'%Y-%m-%d'))"/> --> </p>
+	                    <p>LOT : <span t-esc="infos['lot']" /></p>
+	                    <table class="gridtable">
+	                    	<thead>
+	                    		<tr>
+		                    		<th>Reference</th>
+		                    		<th>Libelle</th>
+		                    		<th>Compte</th>
+		                    		<th>Debit</th>
+		                    		<th>Credit</th>
+		                    	</tr>
+	                    	</thead>
+	                    	<t t-foreach="data" t-as="line">
+	                    		<t t-if="not line_last">
+		                    		<tr>
+			                    		<t t-if="line['analytic']['lines']">
+			                    			<td t-att-rowspan="len(line['analytic']['lines']) + 2" class="text_number">
+			                    				<!-- <span t-esc="line['qr']"/> -->
+			                    			</td>
+			                    		</t>
+			                    		<t t-if="not line['analytic']['lines']">
+			                    			<td class="text_number">
+			                    				<!-- <span t-esc="line['qr']"/> -->
+			                    			</td>
+			                    		</t>
+			                    		<td><span t-esc="line['rule_name']"/></td>
+			                    		<td>
+			                    			<span t-esc="line['account_code']"/><br/>
+			                    			<span t-esc="line['account_name']"/>
+			                    		</td>
+			                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line['debit']).replace(',', ' ')"/></td>
+			                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line['credit']).replace(',', ' ')"/></td>
+			                    	</tr>
+			                    	<t t-if="line['analytic'] and line['analytic']['lines']">
+			                    		<tr t-foreach="line['analytic']['lines']" t-as="line_ana">
+				                    		<t t-if="line_ana_first">
+				                    			<td t-att-rowspan="len(line['analytic']['lines'])">Repartitions analytique Axe</td>
+				                    		</t>
+				                    		<td>
+				                    			<span t-esc="line_ana['compte']"/>
+				                    			<t t-if="line_ana['nom_cpt']">[<span t-esc="line_ana['nom_cpt']"/>]</t>
+				                    		</td>
+				                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line_ana['debit']).replace(',', ' ')"/></td>
+				                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line_ana['credit']).replace(',', ' ')"/></td>
+				                    	</tr>
+				                    	<tr>
+				                    		<td colspan="2">Total</td>
+				                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line['analytic']['total_db']).replace(',', ' ')"/></td>
+				                    		<td class="text_number"><span t-esc="'{:,.0f}'.format(line['analytic']['total_cd']).replace(',', ' ')"/></td>
+				                    	</tr>
+				                    </t>
+				                </t>
+				                <t t-if="line_last">
+				                	<tr>
+			                    		<td></td>
+			                    		<td colspan="2"><h5><b>Total</b></h5></td>
+			                    		<td class="text_number">
+			                    			<b><span t-esc="'{:,.0f}'.format(line['debit']).replace(',', ' ')"/></b>
+			                    		</td>
+			                    		<td class="text_number">
+			                    			<b><span t-esc="'{:,.0f}'.format(line['credit']).replace(',', ' ')"/></b>
+			                    		</td>
+			                    	</tr>
+				                </t>
+
+	                    	</t>
+	                    </table>
+
+	                    <br/>
+
+	                </div>
+	            </t>
+		    </t>
+		</template>
+
+	</data>
+</openerp>

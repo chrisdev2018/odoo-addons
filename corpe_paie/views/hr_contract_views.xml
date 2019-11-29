@@ -1,0 +1,51 @@
+<openerp>
+    <data>
+              
+        <record id="hr_contract_form_view" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+            <field name="priority">17</field>
+            <field name="arch" type="xml">
+
+                <page name="information" position="after">
+                    <page name="primes_retenues" string="Primes et Indemnites">
+                        <field name="primes_ind" >
+                            <tree default_order="is_prime" editable="bottom">
+                                <field name="regle_salariale"/>
+                                <field name="code"/>
+                                <field name="montant"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="accounting" string="Comptabilite">
+                        <group>
+                            <field name="analytic_account_id" />
+                            <field name="personal_account_id" />
+                        </group>
+                    </page>
+                </page>
+
+
+
+                <field name="type_id" position="after">
+                    <field name="methode_paiement" />
+                    <field name="categorie" />
+                </field>
+
+                <xpath expr="//field[@name='wage']" position="before">
+                    <field name="grille_salaire" />
+                </xpath>
+
+                <xpath expr="//field[@name='schedule_pay']" position="after">
+                    <field name="anciennete" />
+                </xpath>
+
+                <xpath expr="//field[@name='struct_id']" position="after">
+                    <field name="base_indice" />
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</openerp>
